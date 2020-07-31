@@ -1,0 +1,9 @@
+query findPet {
+  pet(input: { id: "b617c2d0b8cb4d0c" }) {
+    id
+    createdAt
+    name
+    type
+    img
+  }
+}
