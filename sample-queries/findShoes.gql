@@ -1,6 +1,12 @@
 query findShoes {
-  shoes(input: { brand: "Nike" }) {
+  shoes {
     brand
     size
+    ... on Sneaker {
+      sport
+    }
+    ... on Boot {
+      hasGrip
+    }
   }
 }
