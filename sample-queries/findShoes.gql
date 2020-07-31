@@ -1,0 +1,6 @@
+query findShoes {
+  shoes(input: { brand: "Nike" }) {
+    brand
+    size
+  }
+}

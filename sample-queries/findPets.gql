@@ -1,5 +1,5 @@
 query findPets {
-  pets {
+  pets(input: { type: "CAT" }) {
     id
     createdAt
     name
