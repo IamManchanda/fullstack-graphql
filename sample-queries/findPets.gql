@@ -1,0 +1,9 @@
+query findPets {
+  pets {
+    id
+    createdAt
+    name
+    type
+    img
+  }
+}

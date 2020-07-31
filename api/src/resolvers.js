@@ -4,8 +4,12 @@
  */
 
 module.exports = {
-  Query: {},
-  Mutation: {},
+  Query: {
+    pets(_, __, ctx) {
+      return ctx.models.Pet.findMany();
+    },
+  },
+  /* Mutation: {}, */
   Pet: {
     img(pet) {
       return pet.type === "DOG"
@@ -13,5 +17,5 @@ module.exports = {
         : "http://placekitten.com/300/300";
     },
   },
-  User: {},
+  /* User: {}, */
 };
