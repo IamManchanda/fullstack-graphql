@@ -2,6 +2,8 @@ const gql = require("graphql-tag");
 const { ApolloServer } = require("apollo-server");
 
 const typeDefs = gql`
+  union Footwear = Sneaker | Boot
+
   enum ShoeBrand {
     JORDAN
     NIKE
@@ -87,6 +89,12 @@ const resolvers = {
     },
   },
   Shoe: {
+    __resolveType(shoe) {
+      if (shoe.sport) return "Sneaker";
+      if (shoe.hasGrip) return "Boot";
+    },
+  },
+  Footwear: {
     __resolveType(shoe) {
       if (shoe.sport) return "Sneaker";
       if (shoe.hasGrip) return "Boot";
