@@ -2,6 +2,12 @@ const gql = require("graphql-tag");
 const { ApolloServer } = require("apollo-server");
 
 const typeDefs = gql`
+  enum ShoeBrand {
+    JORDAN
+    NIKE
+    ADIDAS
+  }
+
   type User {
     email: String!
     avatar: String
@@ -9,17 +15,17 @@ const typeDefs = gql`
   }
 
   type Shoe {
-    brand: String!
+    brand: ShoeBrand!
     size: Int!
   }
 
   input ShoesInput {
-    brand: String
+    brand: ShoeBrand
     size: Int
   }
 
   input CreateShoeInput {
-    brand: String!
+    brand: ShoeBrand!
     size: Int!
   }
 
@@ -44,10 +50,10 @@ const resolvers = {
     },
     shoes(_, { input }) {
       return [
-        { brand: "Nike", size: 12 },
-        { brand: "Nike", size: 14 },
-        { brand: "Adidas", size: 12 },
-        { brand: "Adidas", size: 14 },
+        { brand: "NIKE", size: 12 },
+        { brand: "NIKE", size: 14 },
+        { brand: "ADIDAS", size: 12 },
+        { brand: "ADIDAS", size: 14 },
       ].filter((shoe) => shoe.brand === input.brand);
     },
   },
