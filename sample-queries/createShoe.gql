@@ -1,0 +1,6 @@
+mutation createShoe {
+  createShoe(input: { brand: "Jordan", size: 9 }) {
+    brand
+    size
+  }
+}
