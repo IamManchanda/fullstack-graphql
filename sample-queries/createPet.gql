@@ -1,0 +1,9 @@
+mutation createPet {
+  createPet(input: { name: "Rancho", type: "DOG" }) {
+    id
+    createdAt
+    name
+    type
+    img
+  }
+}

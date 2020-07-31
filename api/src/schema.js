@@ -14,7 +14,7 @@ const typeDefs = gql`
     createdAt: String!
     name: String!
     type: String!
-    img: String!
+    img: String
   }
 
   input PetsInput {
@@ -26,9 +26,18 @@ const typeDefs = gql`
     id: ID!
   }
 
+  input CreatePetInput {
+    name: String!
+    type: String!
+  }
+
   type Query {
     pet(input: PetInput): Pet
     pets(input: PetsInput): [Pet]!
+  }
+
+  type Mutation {
+    createPet(input: CreatePetInput!): Pet!
   }
 `;
 
