@@ -2,8 +2,6 @@ const gql = require("graphql-tag");
 const { ApolloServer } = require("apollo-server");
 
 const typeDefs = gql`
-  union Footwear = Sneaker | Boot
-
   enum ShoeBrand {
     JORDAN
     NIKE
@@ -14,23 +12,26 @@ const typeDefs = gql`
   type User {
     email: String!
     avatar: String
-    friends: [User]!
+    shoes: [Shoe]!
   }
 
   interface Shoe {
     brand: ShoeBrand!
     size: Int!
+    user: User!
   }
 
   type Sneaker implements Shoe {
     brand: ShoeBrand!
     size: Int!
+    user: User!
     sport: String!
   }
 
   type Boot implements Shoe {
     brand: ShoeBrand!
     size: Int!
+    user: User!
     hasGrip: Boolean!
   }
 
@@ -54,38 +55,51 @@ const typeDefs = gql`
   }
 `;
 
+const user = {
+  id: 1,
+  email: "yoda@masters.com",
+  avatar: "http://yoda.png",
+  shoes: [],
+};
+
+const shoes = [
+  {
+    brand: "NIKE",
+    size: 12,
+    sport: "basketball",
+    user: 1,
+  },
+  {
+    brand: "TIMBERLAND",
+    size: 14,
+    hasGrip: true,
+    user: 1,
+  },
+  {
+    brand: "ADIDAS",
+    size: 16,
+    sport: "soccer",
+    user: 1,
+  },
+];
+
 const resolvers = {
   Query: {
     me() {
-      return {
-        email: "yoda@masters.com",
-        avatar: "http://yoda.png",
-        friends: [],
-      };
+      return user;
     },
     shoes(_, { input }) {
-      return [
-        {
-          brand: "NIKE",
-          size: 12,
-          sport: "basketball",
-        },
-        {
-          brand: "ADIDAS",
-          size: 16,
-          sport: "soccer",
-        },
-        {
-          brand: "TIMBERLAND",
-          size: 14,
-          hasGrip: true,
-        },
-      ];
+      return shoes;
     },
   },
   Mutation: {
     createShoe(_, { input }) {
       return input;
+    },
+  },
+  User: {
+    shoes() {
+      return shoes;
     },
   },
   Shoe: {
@@ -94,10 +108,14 @@ const resolvers = {
       if (shoe.hasGrip) return "Boot";
     },
   },
-  Footwear: {
-    __resolveType(shoe) {
-      if (shoe.sport) return "Sneaker";
-      if (shoe.hasGrip) return "Boot";
+  Sneaker: {
+    user(shoe) {
+      return user;
+    },
+  },
+  Boot: {
+    user(shoe) {
+      return user;
     },
   },
 };

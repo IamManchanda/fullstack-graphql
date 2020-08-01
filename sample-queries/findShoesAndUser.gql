@@ -1,0 +1,33 @@
+query findShoesAndUser {
+  me {
+    ...userFields
+    shoes {
+      ...shoeFields
+    }
+  }
+  shoes {
+    ...shoeFields
+    user {
+      ...userFields
+      shoes {
+        ...shoeFields
+      }
+    }
+  }
+}
+
+fragment userFields on User {
+  email
+  avatar
+}
+
+fragment shoeFields on Shoe {
+  brand
+  size
+  ... on Sneaker {
+    sport
+  }
+  ... on Boot {
+    hasGrip
+  }
+}
