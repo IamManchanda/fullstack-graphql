@@ -11,16 +11,19 @@ module.exports = {
     pets(_, { input }, { models }) {
       return models.Pet.findMany(input);
     },
+    user(_, __, { models }) {
+      return models.User.findOne();
+    },
   },
   Mutation: {
-    createPet(_, { input }, { models }) {
-      const pet = models.Pet.create(input);
+    createPet(_, { input }, { models, user }) {
+      const pet = models.Pet.create({ ...input, user: user.id });
       return pet;
     },
   },
   Pet: {
-    owner(_, __, { models }) {
-      return models.User.findOne();
+    owner(pet, _, { models }) {
+      return models.User.findOne({ id: pet.user });
     },
     img(pet) {
       return pet.type === "DOG"
@@ -29,8 +32,8 @@ module.exports = {
     },
   },
   User: {
-    pets(_, __, { models }) {
-      return models.Pet.findMany();
+    pets(user, __, { models }) {
+      return models.Pet.findMany({ user: user.id });
     },
   },
 };

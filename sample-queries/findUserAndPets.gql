@@ -1,0 +1,27 @@
+query findUserAndPets {
+  user {
+    ...UserData
+    pets {
+      ...PetData
+      owner {
+        ...UserData
+        pets {
+          ...PetData
+        }
+      }
+    }
+  }
+}
+
+fragment PetData on Pet {
+  id
+  createdAt
+  name
+  type
+  img
+}
+
+fragment UserData on User {
+  id
+  username
+}

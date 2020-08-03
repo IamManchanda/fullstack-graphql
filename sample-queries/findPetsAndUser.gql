@@ -1,5 +1,5 @@
 query findPetsAndUser {
-  pets(input: { type: "CAT" }) {
+  pets(input: { type: CAT }) {
     ...PetData
     owner {
       ...UserData
