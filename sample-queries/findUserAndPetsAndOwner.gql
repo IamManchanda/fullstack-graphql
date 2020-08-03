@@ -5,9 +5,6 @@ query findUserAndPets {
       ...PetData
       owner {
         ...UserData
-        pets {
-          ...PetData
-        }
       }
     }
   }
