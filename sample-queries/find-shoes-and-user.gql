@@ -1,27 +1,27 @@
-query findShoesAndUser {
+query FindShoesAndUser {
   me {
-    ...userFields
+    ...UserData
     shoes {
-      ...shoeFields
+      ...ShoeData
     }
   }
   shoes {
-    ...shoeFields
+    ...ShoeData
     user {
-      ...userFields
+      ...UserData
       shoes {
-        ...shoeFields
+        ...ShoeData
       }
     }
   }
 }
 
-fragment userFields on User {
+fragment UserData on User {
   email
   avatar
 }
 
-fragment shoeFields on Shoe {
+fragment ShoeData on Shoe {
   brand
   size
   ... on Sneaker {

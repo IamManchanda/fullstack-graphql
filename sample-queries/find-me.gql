@@ -1,5 +1,5 @@
 # Write your query or mutation here
-query findMe {
+query FindMe {
   me {
     email
     avatar

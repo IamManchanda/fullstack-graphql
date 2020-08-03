@@ -1,4 +1,4 @@
-query findUserAndPets {
+query FindUserAndPetsAndOwner {
   user {
     ...UserData
     pets {

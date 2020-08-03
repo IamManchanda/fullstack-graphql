@@ -1,4 +1,4 @@
-query findShoes {
+query FindShoes {
   __typename
   shoes {
     __typename

@@ -1,4 +1,4 @@
-query findPet {
+query FindPet {
   pet(input: { id: "b617c2d0b8cb4d0c" }) {
     id
     createdAt

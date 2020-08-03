@@ -1,4 +1,4 @@
-query findPetsAndUser {
+query FindPetsAndOwner {
   pets(input: { type: CAT }) {
     ...PetData
     owner {

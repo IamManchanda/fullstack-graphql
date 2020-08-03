@@ -1,4 +1,4 @@
-mutation createPet {
+mutation CreatePet {
   createPet(input: { name: "Rancho", type: "DOG" }) {
     id
     createdAt
