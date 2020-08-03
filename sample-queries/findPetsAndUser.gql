@@ -1,0 +1,24 @@
+query findPetsAndUser {
+  pets(input: { type: "CAT" }) {
+    ...PetData
+    owner {
+      ...UserData
+      pets {
+        ...PetData
+      }
+    }
+  }
+}
+
+fragment PetData on Pet {
+  id
+  createdAt
+  name
+  type
+  img
+}
+
+fragment UserData on User {
+  id
+  username
+}
