@@ -1,7 +1,17 @@
 query FindAllCharacters {
   characters {
     results {
+      id
       name
+      status
+      species
+      gender
+      image
+      episode {
+        id
+        name
+        episode
+      }
     }
   }
 }
