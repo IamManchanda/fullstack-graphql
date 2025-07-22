@@ -50,6 +50,6 @@
     "babel-preset-react": "^6.24.1",
     "jest": "^26.2.1",
     "nodemon": "^2.0.4",
-    "parcel": "^1.12.4"
+    "parcel": "^2.15.4"
   }
 }
